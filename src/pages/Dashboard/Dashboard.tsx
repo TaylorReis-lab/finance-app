@@ -1,34 +1,29 @@
-import { Grid, Typography } from '@mui/material'
-import FinancialOverviewCards from '@/components/charts/FinancialOverviewCards'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import styles from './Dashboard.module.css'
+
+import { FinancialOverviewCards } from '@/components/charts/FinancialOverviewCards'
 import MonthlySummaryChart from '@/components/charts/MonthlySummaryChart'
-import ExpensePieChart from '@/components/charts/ExpensePieChart'
-import RecentTransactions from '@/components/charts/RecentTransactions'
 
 const Dashboard = () => {
   return (
-    <Grid container spacing={3} p={3}>
-      <Grid item xs={12}>
-        <Typography variant="h4" gutterBottom>
-          Financial Dashboard
-        </Typography>
+    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Finexa: Painel Financeiro
+      </Typography>
+
+      <Grid container spacing={3}>
+        <div className={styles.gridContainer}>
+          <FinancialOverviewCards />
+        </div>
+
+        <div className={styles.gridContainer}>
+          <MonthlySummaryChart />
+        </div>
+
       </Grid>
-      
-      <Grid item xs={12}>
-        <FinancialOverviewCards />
-      </Grid>
-      
-      <Grid item xs={12} md={8}>
-        <MonthlySummaryChart />
-      </Grid>
-      
-      <Grid item xs={12} md={4}>
-        <ExpensePieChart />
-      </Grid>
-      
-      <Grid item xs={12}>
-        <RecentTransactions />
-      </Grid>
-    </Grid>
+    </Container>
   )
 }
 
