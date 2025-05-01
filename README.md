@@ -37,23 +37,24 @@ Aplicativo completo para gestão financeira pessoal com dashboard interativo, re
 1. Clone o repositório:
 ```bash
 git clone https://github.com/seu-usuario/finance-app.git
+```
 
 2. Instale as dependências:
 
 ```bash
 cd finance-app
 npm install
-
+```
 3. Configure o ambiente:
 ```bash
 cp .env.example .env
-
+```
 4. Inicie o servidor:
 ```bash
 npm start
 ou
 yarn start
-
+```
 🏗️ Estrutura do Projeto
 
 graph TD
@@ -88,13 +89,13 @@ graph TD
     "date-fns": "^2.30.0"
   }
 }
-
+```
 🐛 Solução de Problemas Comuns
 Erro: "Module not found"
 ```bash
 rm -rf node_modules package-lock.json
 npm install
-
+```
 🤝 Como Contribuir
 Faça um fork do projeto
 
@@ -137,3 +138,4 @@ Seção de roadmap (opcional):
 - [x] Dashboard básico
 - [ ] Integração com bancos (Open Banking)
 - [ ] Aplicativo mobile (React Native)
+```
