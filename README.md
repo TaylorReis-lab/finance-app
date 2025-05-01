@@ -51,29 +51,13 @@ yarn start
 ```
 🏗️ Estrutura do Projeto
 
-```mermaid
-graph LR
-    A[src] --> B[components]
-    A --> C[pages]
-    A --> D[services]
-    
-    B --> B1[charts]
-    B --> B2[forms]
-    B --> B3[ui]
-    
-    B1 --> B1A[FinancialOverviewCards]
-    B1 --> B1B[MonthlySummaryChart]
-    
-    B2 --> B2A[TransactionForm]
-    B2 --> B2B[ImportForm]
-    
-    C --> C1[Dashboard]
-    C --> C2[Transactions]
-    C --> C3[Reports]
-    
-    D --> D1[API]
-    D --> D2[ExcelParser]
-```
+src/
+├── components/    # Componentes reutilizáveis
+├── hooks/         # Hooks customizados
+├── pages/         # Componentes de página
+├── services/      # Lógica de API/services
+├── styles/        # Configurações de tema
+└── utils/         # Funções utilitárias
 
 🌐 API Integration
 - Endpoints consumidos:
