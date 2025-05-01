@@ -113,10 +113,6 @@ Faça push para a branch (git push origin feature/awesome-feature)
 
 Abra um Pull Request
 
-📄 Licença
-Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
-
-<p align="center"> Desenvolvido com ❤️ por <a href="https://github.com/TaylorReis-lab">Taylor Reis</a> </p> ```
 Dicas para personalização:
 Adicione screenshots reais:
 
@@ -145,3 +141,8 @@ Seção de roadmap (opcional):
 - [ ] Integração com bancos (Open Banking)
 - [ ] Aplicativo mobile (React Native)
 ```
+
+📄 Licença
+Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
+
+<p align="center"> Desenvolvido com ❤️ por <a href="https://github.com/TaylorReis-lab">Taylor Reis</a> </p> ```
