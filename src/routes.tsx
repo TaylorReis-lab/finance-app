@@ -1,14 +1,14 @@
 import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { Loading } from './components/shared/Loading'
+import Loading from './components/shared/Loading'
 
-const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'))
-const Transactions = lazy(() => import('./pages/Transactions/Transactions'))
-const Reports = lazy(() => import('./pages/Reports/Reports'))
-const Import = lazy(() => import('./pages/Import/Import'))
-const Settings = lazy(() => import('./pages/Settings/Settings'))
+const Dashboard = lazy(() => import('@/pages/Dashboard'))
+const Transactions = lazy(() => import('@/pages/Transactions'))
+const Reports = lazy(() => import('@/pages/Reports'))
+const Import = lazy(() => import('@/pages/Import'))
+const Settings = lazy(() => import('@/pages/Settings'))
 
-export const AppRoutes = () => (
+const AppRoutes = () => (
   <Suspense fallback={<Loading fullScreen />}>
     <Routes>
       <Route path="/" element={<Dashboard />} />
@@ -19,3 +19,5 @@ export const AppRoutes = () => (
     </Routes>
   </Suspense>
 )
+
+export default AppRoutes

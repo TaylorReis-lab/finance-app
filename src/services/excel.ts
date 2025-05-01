@@ -15,26 +15,14 @@ export const processExcelFile = async (file: File): Promise<ExcelTransaction[]> 
       try {
         const data = new Uint8Array(e.target?.result as ArrayBuffer)
         const workbook = XLSX.read(data, { type: 'array' })
-        const firstSheet = workbook.Sheets[workbook.SheetNames[0]]
-        const jsonData = XLSX.utils.sheet_to_json<ExcelTransaction>(firstSheet)
-        
-        // Validar e transformar os dados
-        const transactions = jsonData.map(item => ({
-          ...item,
-          Date: new Date(item.Date).toISOString(),
-          Amount: Number(item.Amount)
-        }))
-        
-        resolve(transactions)
+        const jsonData = XLSX.utils.sheet_to_json<ExcelTransaction>(workbook.Sheets[workbook.SheetNames[0]])
+        resolve(jsonData)
       } catch (error) {
         reject(new Error('Failed to process Excel file'))
       }
     }
     
-    reader.onerror = () => {
-      reject(new Error('Error reading file'))
-    }
-    
+    reader.onerror = () => reject(new Error('Error reading file'))
     reader.readAsArrayBuffer(file)
   })
 }
