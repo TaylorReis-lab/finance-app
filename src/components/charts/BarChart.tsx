@@ -11,13 +11,13 @@ import {
 import { FinancialData } from '@/types/chart'
 import { formatCurrency } from '@/utils/formatters'
 import styles from './ChartStyles.module.css'
-
 interface BarChartProps {
   data: FinancialData[]
   timeframe: 'monthly' | 'weekly'
 }
 
 export const BarChartComponent = ({ data, timeframe }: BarChartProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
 
   const processedData = useMemo(() => {
@@ -26,7 +26,7 @@ export const BarChartComponent = ({ data, timeframe }: BarChartProps) => {
       name:
         timeframe === 'monthly'
           ? new Date(item.date).toLocaleString('default', { month: 'short' })
-          : `Semana ${new Date(item.date).getWeek()}`
+          : `Semana ${getWeek(new Date(item.date))}`
     }))
   }, [data, timeframe])
 

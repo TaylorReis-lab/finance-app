@@ -1,6 +1,7 @@
 import { Typography } from '@mui/material'
-import TransactionList from '@/components/forms/TransactionList'
-import TransactionForm from '@/components/forms/TransactionForm'
+import {TransactionList} from '../../components/forms/TransactionList'
+import { TransactionForm } from '../../components/forms/TransactionForm'
+import { Transaction } from '@/types/transaction'
 
 const Transactions = () => {
   return (
@@ -9,7 +10,9 @@ const Transactions = () => {
         Transactions
       </Typography>
       <TransactionForm />
-      <TransactionList />
+      <TransactionList transactions={[]} onEdit={function (transaction: Transaction): void {
+        throw new Error('Function not implemented.')
+      } } />
     </div>
   )
 }

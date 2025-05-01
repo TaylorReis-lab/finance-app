@@ -9,15 +9,22 @@ import {
   InputAdornment,
   RadioGroup,
   FormControlLabel,
-  Radio} from '@mui/material'
-  import Grid from '@material-ui/core/Grid'
-import { DatePicker } from '@mui/x-date-pickers'
+  Radio,
+  FilledTextFieldProps,
+  OutlinedTextFieldProps,
+  StandardTextFieldProps,
+  TextFieldVariants
+} from '@mui/material'
+import Grid from '@material-ui/core/Grid'
+import { DateField } from '@mui/x-date-pickers'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { Transaction } from '@/types/transaction'
 import { validateTransaction } from '@/utils/validators'
 import useTransactions from '@/hooks/useTransactions'
 import { formatCurrency } from '@/utils/formatters'
+import { formatISO } from 'date-fns'
+import { JSX } from 'react/jsx-runtime'
 
 const categories = [
   'Alimentação',
@@ -94,18 +101,32 @@ export const TransactionForm = () => {
               <Controller
                 name="date"
                 control={control}
-                defaultValue={new Date().toISOString()}
-                render={({ field }) => (
-                  <DatePicker
+                defaultValue={formatISO(new Date())}
+                render={({ field, fieldState: { error } }) => (
+                  <DateField
                     label="Data"
-                    value={new Date(field.value)}
-                    onChange={(date) => date && field.onChange(date.toISOString())}
-                    slotProps={{
-                      textField: {
-                        fullWidth: true,
-                        error: !!errors.date,
-                        helperText: errors.date?.message
-                      }
+                    value={field.value ? new Date(field.value) : null}
+                    onChange={(newValue: Date | null) => {
+                      field.onChange(newValue ? formatISO(newValue) : '')
+                    }}
+                    slots={{
+                      textField: (
+                        params: JSX.IntrinsicAttributes & {
+                          variant?: TextFieldVariants | undefined
+                        } & Omit<
+                            | OutlinedTextFieldProps
+                            | FilledTextFieldProps
+                            | StandardTextFieldProps,
+                            'variant'
+                          >
+                      ) => (
+                        <TextField
+                          {...params}
+                          fullWidth
+                          error={!!error}
+                          helperText={error?.message}
+                        />
+                      )
                     }}
                   />
                 )}
@@ -155,7 +176,7 @@ export const TransactionForm = () => {
                       )
                     }}
                     onChange={e => {
-                      const formatted = formatCurrency(Number(e.target.value));
+                      const formatted = formatCurrency(Number(e.target.value))
                       field.onChange(formatted)
                     }}
                     error={!!errors.amount}
