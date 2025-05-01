@@ -26,12 +26,6 @@ Aplicativo completo para gestão financeira pessoal com dashboard interativo, re
   <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite">
 </p>
 
-## 📸 Demonstração
-
-| Dashboard | Transações | Relatórios |
-|-----------|------------|------------|
-| ![Dashboard](demo/dashboard.png) | ![Transactions](demo/transactions.png) | ![Reports](demo/reports.png) |
-
 ## 🛠️ Instalação
 
 1. Clone o repositório:
@@ -57,17 +51,66 @@ yarn start
 ```
 🏗️ Estrutura do Projeto
 
+```mermaid
 graph TD
-    A[App] --> B[Layout]
-    B --> C[Navbar]
-    B --> D[Routes]
-    D --> E[Dashboard]
-    D --> F[Transactions]
-    D --> G[Reports]
-    F --> H[TransactionForm]
-    F --> I[TransactionList]
-    G --> J[ReportFilters]
-    G --> K[Charts]
+    A[finance-app] --> B[public]
+    A --> C[src]
+    A --> D[.github]
+    
+    B --> B1[index.html]
+    B --> B2[favicon.ico]
+    B --> B3[assets]
+    
+    D --> D1[workflows]
+    D --> D2[ISSUE_TEMPLATE]
+    
+    C --> C1[assets]
+    C --> C2[components]
+    C --> C3[hooks]
+    C --> C4[pages]
+    C --> C5[services]
+    C --> C6[styles]
+    C --> C7[types]
+    C --> C8[utils]
+    
+    C1 --> C1A[icons]
+    C1 --> C1B[images]
+    
+    C2 --> C2A[charts]
+    C2 --> C2B[forms]
+    C2 --> C2C[ui]
+    C2 --> C2D[shared]
+    
+    C2A --> C2A1[FinancialOverviewCards.tsx]
+    C2A --> C2A2[MonthlySummaryChart.tsx]
+    C2A --> C2A3[ChartStyles.ts]
+    
+    C2B --> C2B1[TransactionForm.tsx]
+    C2B --> C2B2[ImportForm.tsx]
+    C2B --> C2B3[FormStyles.module.css]
+    
+    C3 --> C3A[useTransactions.ts]
+    C3 --> C3B[useChartData.ts]
+    
+    C4 --> C4A[Dashboard]
+    C4 --> C4B[Transactions]
+    C4 --> C4C[Reports]
+    
+    C4A --> C4A1[index.tsx]
+    C4A --> C4A2[Dashboard.module.css]
+    
+    C5 --> C5A[api.ts]
+    C5 --> C5B[transactionService.ts]
+    
+    C6 --> C6A[theme.ts]
+    C6 --> C6B[global.css]
+    
+    C7 --> C7A[transaction.d.ts]
+    C7 --> C7B[api.d.ts]
+    
+    C8 --> C8A[formatters.ts]
+    C8 --> C8B[validators.ts]
+```
 
 🌐 API Integration
 - Endpoints consumidos:
