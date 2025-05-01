@@ -52,8 +52,7 @@ yarn start
 🏗️ Estrutura do Projeto
 
 ```mermaid
-graph TD
-    graph LR
+graph LR
     A[src] --> B[components]
     A --> C[pages]
     A --> D[services]
