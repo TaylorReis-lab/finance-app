@@ -8,9 +8,9 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  Divider  
+  Divider
 } from '@mui/material'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { DatePicker } from '@mui/x-date-pickers'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { subMonths } from 'date-fns'
@@ -47,7 +47,6 @@ export const ReportFilters = ({ onFilter, categories }: ReportFiltersProps) => {
         newStartDate = new Date(new Date().getFullYear(), 0, 1)
         break
       case 'custom':
-        // Mantém as datas customizadas
         return
       default:
         break

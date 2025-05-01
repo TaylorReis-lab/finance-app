@@ -11,6 +11,7 @@ import {
 import { FinancialData } from '@/types/chart'
 import { formatCurrency } from '@/utils/formatters'
 import styles from './ChartStyles.module.css'
+import { getWeek } from 'date-fns/getWeek'
 interface BarChartProps {
   data: FinancialData[]
   timeframe: 'monthly' | 'weekly'

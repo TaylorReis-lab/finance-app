@@ -9,11 +9,7 @@ import {
   InputAdornment,
   RadioGroup,
   FormControlLabel,
-  Radio,
-  FilledTextFieldProps,
-  OutlinedTextFieldProps,
-  StandardTextFieldProps,
-  TextFieldVariants
+  Radio
 } from '@mui/material'
 import Grid from '@material-ui/core/Grid'
 import { DateField } from '@mui/x-date-pickers'
@@ -24,8 +20,8 @@ import { validateTransaction } from '@/utils/validators'
 import useTransactions from '@/hooks/useTransactions'
 import { formatCurrency } from '@/utils/formatters'
 import { formatISO } from 'date-fns'
-import { JSX } from 'react/jsx-runtime'
 
+// Definição de categorias
 const categories = [
   'Alimentação',
   'Transporte',
@@ -38,7 +34,12 @@ const categories = [
   'Outros'
 ]
 
-export const TransactionForm = () => {
+// Interface para o componente com a propriedade onSuccess
+interface TransactionFormProps {
+  onSuccess: () => void;  // Adicionando a propriedade onSuccess
+}
+
+export const TransactionForm: React.FC<TransactionFormProps> = ({ onSuccess }) => {
   const {
     control,
     handleSubmit,
@@ -56,6 +57,7 @@ export const TransactionForm = () => {
         throw new Error(validationError)
       }
 
+      // Adiciona a transação
       await addTransaction({
         ...data,
         amount:
@@ -63,11 +65,12 @@ export const TransactionForm = () => {
             ? -Math.abs(data.amount)
             : Math.abs(data.amount)
       })
-      reset()
+      reset()  // Reseta o formulário após o envio
+      onSuccess()  // Chama a função onSuccess após a transação ser adicionada com sucesso
     } catch (error) {
       console.error('Error adding transaction:', error)
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false)  // Finaliza o estado de submissão
     }
   }
 
@@ -79,6 +82,7 @@ export const TransactionForm = () => {
         </Typography>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={2}>
+            {/* Descrição */}
             <Grid item xs={12} md={6}>
               <Controller
                 name="description"
@@ -97,6 +101,7 @@ export const TransactionForm = () => {
               />
             </Grid>
 
+            {/* Data */}
             <Grid item xs={12} md={6}>
               <Controller
                 name="date"
@@ -110,16 +115,7 @@ export const TransactionForm = () => {
                       field.onChange(newValue ? formatISO(newValue) : '')
                     }}
                     slots={{
-                      textField: (
-                        params: JSX.IntrinsicAttributes & {
-                          variant?: TextFieldVariants | undefined
-                        } & Omit<
-                            | OutlinedTextFieldProps
-                            | FilledTextFieldProps
-                            | StandardTextFieldProps,
-                            'variant'
-                          >
-                      ) => (
+                      textField: (params) => (
                         <TextField
                           {...params}
                           fullWidth
@@ -133,6 +129,7 @@ export const TransactionForm = () => {
               />
             </Grid>
 
+            {/* Tipo (Despesa ou Receita) */}
             <Grid item xs={12}>
               <Controller
                 name="type"
@@ -140,21 +137,14 @@ export const TransactionForm = () => {
                 defaultValue="expense"
                 render={({ field }) => (
                   <RadioGroup row {...field}>
-                    <FormControlLabel
-                      value="expense"
-                      control={<Radio />}
-                      label="Despesa"
-                    />
-                    <FormControlLabel
-                      value="income"
-                      control={<Radio />}
-                      label="Receita"
-                    />
+                    <FormControlLabel value="expense" control={<Radio />} label="Despesa" />
+                    <FormControlLabel value="income" control={<Radio />} label="Receita" />
                   </RadioGroup>
                 )}
               />
             </Grid>
 
+            {/* Valor */}
             <Grid item xs={12} md={6}>
               <Controller
                 name="amount"
@@ -171,11 +161,9 @@ export const TransactionForm = () => {
                     fullWidth
                     type="number"
                     InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">R$</InputAdornment>
-                      )
+                      startAdornment: <InputAdornment position="start">R$</InputAdornment>
                     }}
-                    onChange={e => {
+                    onChange={(e) => {
                       const formatted = formatCurrency(Number(e.target.value))
                       field.onChange(formatted)
                     }}
@@ -186,6 +174,7 @@ export const TransactionForm = () => {
               />
             </Grid>
 
+            {/* Categoria */}
             <Grid item xs={12} md={6}>
               <Controller
                 name="category"
@@ -193,7 +182,7 @@ export const TransactionForm = () => {
                 defaultValue="Outros"
                 render={({ field }) => (
                   <TextField select label="Categoria" fullWidth {...field}>
-                    {categories.map(category => (
+                    {categories.map((category) => (
                       <MenuItem key={category} value={category}>
                         {category}
                       </MenuItem>
@@ -203,6 +192,7 @@ export const TransactionForm = () => {
               />
             </Grid>
 
+            {/* Botão de envio */}
             <Grid item xs={12}>
               <Button
                 type="submit"

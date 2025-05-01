@@ -2,11 +2,11 @@ import { lazy, Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Loading from './components/shared/Loading'
 
-const Dashboard = lazy(() => import('@/pages/Dashboard'))
-const Transactions = lazy(() => import('@/pages/Transactions'))
-const Reports = lazy(() => import('@/pages/Reports'))
-const Import = lazy(() => import('@/pages/Import'))
-const Settings = lazy(() => import('@/pages/Settings'))
+const Dashboard = lazy(() => import('./pages/Dashboard'))
+const Transactions = lazy(() => import('./pages/Transaction'))
+const Reports = lazy(() => import('./pages/Reports'))
+const Import = lazy(() => import('./pages/Import'))
+const Settings = lazy(() => import('./pages/Settings'))
 
 const AppRoutes = () => (
   <Suspense fallback={<Loading fullScreen />}>

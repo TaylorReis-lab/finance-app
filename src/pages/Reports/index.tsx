@@ -1,21 +1,23 @@
-import { useState } from 'react'
 import { Box, Typography } from '@mui/material'
-import ReportFilters from '../../components/forms/ReportFilters'
+import { ReportFilters } from '@/components/forms/ReportFilters'
 
 const Reports = () => {
-  const [filters, setFilters] = useState({
-    period: 'last30',
-    startDate: null,
-    endDate: null,
-    category: 'all'
-  })
+  const handleFilter = (filters: {
+    period: string
+    startDate: Date | null
+    endDate: Date | null
+    category: string
+  }) => {
+    console.log('Filtros aplicados:', filters)
+    // Faça algo com os filtros aqui
+  }
 
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" gutterBottom>
         Relatórios
       </Typography>
-      <ReportFilters onFilter={setFilters} categories={['Alimentação', 'Transporte', 'Moradia']} />
+      <ReportFilters onFilter={handleFilter} categories={['Alimentação', 'Transporte', 'Moradia']} />
     </Box>
   )
 }

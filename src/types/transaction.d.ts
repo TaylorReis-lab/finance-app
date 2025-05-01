@@ -23,3 +23,12 @@ interface TransactionHook {
   updateTransaction: (id: string, updates: Partial<Transaction>) => Promise<void>
   refetch: () => Promise<void>
 }
+
+interface Transaction {
+  id: string
+  date: string
+  description: string
+  amount: number
+  category: string
+  type: 'income' | 'expense'
+}
