@@ -8,11 +8,13 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  TextField,
   Divider
 } from '@mui/material'
-import { DatePicker } from '@mui/x-date-pickers'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { subMonths } from 'date-fns'
+import { TextField, TextFieldProps } from '@mui/material';
 
 interface ReportFiltersProps {
   onFilter: (filters: {
@@ -87,20 +89,22 @@ export const ReportFilters = ({ onFilter, categories }: ReportFiltersProps) => {
         </FormControl>
 
         {period === 'custom' && (
-          <>
-            <DatePicker
-              label="Data inicial"
-              value={startDate}
-              onChange={setStartDate}
-              renderInput={params => <TextField {...params} />}
-            />
-            <DatePicker
-              label="Data final"
-              value={endDate}
-              onChange={setEndDate}
-              renderInput={params => <TextField {...params} />}
-            />
-          </>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <>
+              <DatePicker
+                label="Data inicial"
+                value={startDate}
+                onChange={newValue => setStartDate(newValue)}
+                renderInput={(params: TextFieldProps) => <TextField {...params} />}
+              />
+              <DatePicker
+                label="Data final"
+                value={endDate}
+                onChange={newValue => setEndDate(newValue)}
+                renderInput={(params: TextFieldProps) => <TextField {...params} />}
+              />
+            </>
+          </LocalizationProvider>
         )}
 
         <FormControl sx={{ minWidth: 120 }}>

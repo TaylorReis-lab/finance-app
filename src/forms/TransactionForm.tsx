@@ -9,10 +9,11 @@ import {
   InputAdornment,
   RadioGroup,
   FormControlLabel,
-  Radio
-} from '@mui/material'
-import Grid from '@mui/material/Grid'
+  Radio} from '@mui/material'
+  import Grid from '@material-ui/core/Grid'
 import { DatePicker } from '@mui/x-date-pickers'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { Transaction } from '@/types/transaction'
 import { validateTransaction } from '@/utils/validators'
 import useTransactions from '@/hooks/useTransactions'
@@ -64,130 +65,138 @@ export const TransactionForm = () => {
   }
 
   return (
-    <Paper elevation={2} sx={{ p: 3, mb: 4 }}>
-      <Typography variant="h6" gutterBottom>
-        Adicionar Transação
-      </Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
-            <Controller
-              name="description"
-              control={control}
-              defaultValue=""
-              rules={{ required: 'Descrição é obrigatória' }}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Descrição"
-                  fullWidth
-                  error={!!errors.description}
-                  helperText={errors.description?.message}
-                />
-              )}
-            />
-          </Grid>
-
-          <Grid item xs={12} md={6}>
-            <Controller
-              name="date"
-              control={control}
-              defaultValue={new Date().toISOString()}
-              render={({ field }) => (
-                <DatePicker
-                  label="Data"
-                  value={new Date(field.value)}
-                  onChange={date => field.onChange(date?.toISOString())}
-                  renderInput={params => <TextField {...params} fullWidth />}
-                />
-              )}
-            />
-          </Grid>
-
-          <Grid item xs={12}>
-            <Controller
-              name="type"
-              control={control}
-              defaultValue="expense"
-              render={({ field }) => (
-                <RadioGroup row {...field}>
-                  <FormControlLabel
-                    value="expense"
-                    control={<Radio />}
-                    label="Despesa"
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Paper elevation={2} sx={{ p: 3, mb: 4 }}>
+        <Typography variant="h6" gutterBottom>
+          Adicionar Transação
+        </Typography>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+              <Controller
+                name="description"
+                control={control}
+                defaultValue=""
+                rules={{ required: 'Descrição é obrigatória' }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Descrição"
+                    fullWidth
+                    error={!!errors.description}
+                    helperText={errors.description?.message}
                   />
-                  <FormControlLabel
-                    value="income"
-                    control={<Radio />}
-                    label="Receita"
+                )}
+              />
+            </Grid>
+
+            <Grid item xs={12} md={6}>
+              <Controller
+                name="date"
+                control={control}
+                defaultValue={new Date().toISOString()}
+                render={({ field }) => (
+                  <DatePicker
+                    label="Data"
+                    value={new Date(field.value)}
+                    onChange={(date) => date && field.onChange(date.toISOString())}
+                    slotProps={{
+                      textField: {
+                        fullWidth: true,
+                        error: !!errors.date,
+                        helperText: errors.date?.message
+                      }
+                    }}
                   />
-                </RadioGroup>
-              )}
-            />
-          </Grid>
+                )}
+              />
+            </Grid>
 
-          <Grid item xs={12} md={6}>
-            <Controller
-              name="amount"
-              control={control}
-              defaultValue={0}
-              rules={{
-                required: 'Valor é obrigatório',
-                min: { value: 0.01, message: 'Valor deve ser positivo' }
-              }}
-              render={({ field }) => (
-                <TextField
-                  {...field}
-                  label="Valor"
-                  fullWidth
-                  type="number"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">R$</InputAdornment>
-                    )
-                  }}
-                  onChange={e => {
-                    const formatted = formatCurrency(e.target.value)
-                    field.onChange(formatted)
-                  }}
-                  error={!!errors.amount}
-                  helperText={errors.amount?.message}
-                />
-              )}
-            />
-          </Grid>
+            <Grid item xs={12}>
+              <Controller
+                name="type"
+                control={control}
+                defaultValue="expense"
+                render={({ field }) => (
+                  <RadioGroup row {...field}>
+                    <FormControlLabel
+                      value="expense"
+                      control={<Radio />}
+                      label="Despesa"
+                    />
+                    <FormControlLabel
+                      value="income"
+                      control={<Radio />}
+                      label="Receita"
+                    />
+                  </RadioGroup>
+                )}
+              />
+            </Grid>
 
-          <Grid item xs={12} md={6}>
-            <Controller
-              name="category"
-              control={control}
-              defaultValue="Outros"
-              render={({ field }) => (
-                <TextField select label="Categoria" fullWidth {...field}>
-                  {categories.map(category => (
-                    <MenuItem key={category} value={category}>
-                      {category}
-                    </MenuItem>
-                  ))}
-                </TextField>
-              )}
-            />
-          </Grid>
+            <Grid item xs={12} md={6}>
+              <Controller
+                name="amount"
+                control={control}
+                defaultValue={0}
+                rules={{
+                  required: 'Valor é obrigatório',
+                  min: { value: 0.01, message: 'Valor deve ser positivo' }
+                }}
+                render={({ field }) => (
+                  <TextField
+                    {...field}
+                    label="Valor"
+                    fullWidth
+                    type="number"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">R$</InputAdornment>
+                      )
+                    }}
+                    onChange={e => {
+                      const formatted = formatCurrency(Number(e.target.value));
+                      field.onChange(formatted)
+                    }}
+                    error={!!errors.amount}
+                    helperText={errors.amount?.message}
+                  />
+                )}
+              />
+            </Grid>
 
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              disabled={isSubmitting}
-              fullWidth
-              sx={{ mt: 2 }}
-            >
-              {isSubmitting ? 'Salvando...' : 'Adicionar Transação'}
-            </Button>
+            <Grid item xs={12} md={6}>
+              <Controller
+                name="category"
+                control={control}
+                defaultValue="Outros"
+                render={({ field }) => (
+                  <TextField select label="Categoria" fullWidth {...field}>
+                    {categories.map(category => (
+                      <MenuItem key={category} value={category}>
+                        {category}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                )}
+              />
+            </Grid>
+
+            <Grid item xs={12}>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                disabled={isSubmitting}
+                fullWidth
+                sx={{ mt: 2 }}
+              >
+                {isSubmitting ? 'Salvando...' : 'Adicionar Transação'}
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-      </form>
-    </Paper>
+        </form>
+      </Paper>
+    </LocalizationProvider>
   )
 }

@@ -27,6 +27,19 @@ const useTransactions = () => {
       setError('Failed to add transaction')
     }
   }
+  const addBulkTransactions = async (newTransactions: Omit<Transaction, 'id'>[]) => {
+    try {
+      setLoading(true)
+      const response = await api.post('/transactions/bulk', newTransactions)
+      setTransactions([...transactions, ...response.data])
+      return response.data
+    } catch (err) {
+      setError('Failed to add bulk transactions')
+      throw err
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const deleteTransaction = async (id: string) => {
     try {
@@ -62,7 +75,8 @@ const useTransactions = () => {
     addTransaction,
     deleteTransaction,
     updateTransaction,
-    refetch: fetchTransactions
+    refetch: fetchTransactions,
+    addBulkTransactions
   }
 }
 
