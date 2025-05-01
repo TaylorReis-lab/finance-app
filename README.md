@@ -1,47 +1,139 @@
-# Getting Started with Create React App
+# 💰 Finexa App - Gestão Financeira Pessoal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Dashboard Preview](https://example.com/path-to-your-demo-image.gif)
 
-## Available Scripts
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![React Version](https://img.shields.io/badge/React-18.2.0-blue)](https://reactjs.org/)
+[![TypeScript Version](https://img.shields.io/badge/TypeScript-4.9.5-blue)](https://www.typescriptlang.org/)
 
-In the project directory, you can run:
+Aplicativo completo para gestão financeira pessoal com dashboard interativo, relatórios e importação de dados.
 
-### `npm start`
+## ✨ Funcionalidades
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- 📊 **Dashboard Financeiro** com visualização em tempo real
+- 💳 **Gestão de Transações** (CRUD completo)
+- 📥 **Importação de planilhas** (Excel/CSV)
+- 📈 **Relatórios personalizáveis** com filtros avançados
+- 🏷️ **Categorização automática** de gastos
+- 🔄 **Sincronização entre dispositivos**
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🚀 Tecnologias
 
-### `npm test`
+<p align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=mui&logoColor=white" alt="Material UI">
+  <img src="https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E" alt="Vite">
+</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📸 Demonstração
 
-### `npm run build`
+| Dashboard | Transações | Relatórios |
+|-----------|------------|------------|
+| ![Dashboard](demo/dashboard.png) | ![Transactions](demo/transactions.png) | ![Reports](demo/reports.png) |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🛠️ Instalação
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/finance-app.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Instale as dependências:
 
-### `npm run eject`
+```bash
+cd finance-app
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Configure o ambiente:
+```bash
+cp .env.example .env
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Inicie o servidor:
+```bash
+npm start
+ou
+yarn start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+🏗️ Estrutura do Projeto
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+graph TD
+    A[App] --> B[Layout]
+    B --> C[Navbar]
+    B --> D[Routes]
+    D --> E[Dashboard]
+    D --> F[Transactions]
+    D --> G[Reports]
+    F --> H[TransactionForm]
+    F --> I[TransactionList]
+    G --> J[ReportFilters]
+    G --> K[Charts]
 
-## Learn More
+🌐 API Integration
+- Endpoints consumidos:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- GET /transactions - Lista transações
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-# finance-app
+- POST /transactions - Cria nova transação
+
+- POST /transactions/import - Importa em lote
+
+📦 Dependências Principais
+```bash
+{
+  "dependencies": {
+    "@mui/material": "^5.14.0",
+    "@mui/x-date-pickers": "^7.0.0",
+    "react": "^18.2.0",
+    "react-hook-form": "^7.45.0",
+    "date-fns": "^2.30.0"
+  }
+}
+
+🐛 Solução de Problemas Comuns
+Erro: "Module not found"
+```bash
+rm -rf node_modules package-lock.json
+npm install
+
+🤝 Como Contribuir
+Faça um fork do projeto
+
+Crie uma branch para sua feature (git checkout -b feature/awesome-feature)
+
+Faça commit das suas alterações (git commit -m 'feat: Add awesome feature')
+
+Faça push para a branch (git push origin feature/awesome-feature)
+
+Abra um Pull Request
+
+📄 Licença
+Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
+
+<p align="center"> Desenvolvido com ❤️ por <a href="https://github.com/TaylorReis-lab">Taylor Reis</a> </p> ```
+Dicas para personalização:
+Adicione screenshots reais:
+
+Crie uma pasta demo/ no repositório
+
+Adicione imagens do seu app em funcionamento
+
+Badges personalizadas:
+
+Adicione badges de build/tests do GitHub Actions
+
+Inclua cobertura de código
+
+GIF de demonstração:
+
+Grave um screencast usando ferramentas como ScreenToGif
+
+Mostre o fluxo principal do aplicativo
+
+Seção de roadmap (opcional):
+```bash
+## 🗺️ Roadmap
+
+- [x] CRUD de transações
+- [x] Dashboard básico
+- [ ] Integração com bancos (Open Banking)
+- [ ] Aplicativo mobile (React Native)
