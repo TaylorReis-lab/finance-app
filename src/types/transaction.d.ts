@@ -1,4 +1,6 @@
 export interface Transaction {
+  type: string;
+  receiptUrl: any;
   id: string;
   date: string;
   description: string;

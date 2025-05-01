@@ -11,7 +11,8 @@ import {
   TableSortLabel,
   IconButton,
   Tooltip,
-  Chip
+  Chip,
+  Box
 } from '@mui/material'
 import {
   Edit as EditIcon,
