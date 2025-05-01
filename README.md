@@ -53,63 +53,27 @@ yarn start
 
 ```mermaid
 graph TD
-    A[finance-app] --> B[public]
-    A --> C[src]
-    A --> D[.github]
+    graph LR
+    A[src] --> B[components]
+    A --> C[pages]
+    A --> D[services]
     
-    B --> B1[index.html]
-    B --> B2[favicon.ico]
-    B --> B3[assets]
+    B --> B1[charts]
+    B --> B2[forms]
+    B --> B3[ui]
     
-    D --> D1[workflows]
-    D --> D2[ISSUE_TEMPLATE]
+    B1 --> B1A[FinancialOverviewCards]
+    B1 --> B1B[MonthlySummaryChart]
     
-    C --> C1[assets]
-    C --> C2[components]
-    C --> C3[hooks]
-    C --> C4[pages]
-    C --> C5[services]
-    C --> C6[styles]
-    C --> C7[types]
-    C --> C8[utils]
+    B2 --> B2A[TransactionForm]
+    B2 --> B2B[ImportForm]
     
-    C1 --> C1A[icons]
-    C1 --> C1B[images]
+    C --> C1[Dashboard]
+    C --> C2[Transactions]
+    C --> C3[Reports]
     
-    C2 --> C2A[charts]
-    C2 --> C2B[forms]
-    C2 --> C2C[ui]
-    C2 --> C2D[shared]
-    
-    C2A --> C2A1[FinancialOverviewCards.tsx]
-    C2A --> C2A2[MonthlySummaryChart.tsx]
-    C2A --> C2A3[ChartStyles.ts]
-    
-    C2B --> C2B1[TransactionForm.tsx]
-    C2B --> C2B2[ImportForm.tsx]
-    C2B --> C2B3[FormStyles.module.css]
-    
-    C3 --> C3A[useTransactions.ts]
-    C3 --> C3B[useChartData.ts]
-    
-    C4 --> C4A[Dashboard]
-    C4 --> C4B[Transactions]
-    C4 --> C4C[Reports]
-    
-    C4A --> C4A1[index.tsx]
-    C4A --> C4A2[Dashboard.module.css]
-    
-    C5 --> C5A[api.ts]
-    C5 --> C5B[transactionService.ts]
-    
-    C6 --> C6A[theme.ts]
-    C6 --> C6B[global.css]
-    
-    C7 --> C7A[transaction.d.ts]
-    C7 --> C7B[api.d.ts]
-    
-    C8 --> C8A[formatters.ts]
-    C8 --> C8B[validators.ts]
+    D --> D1[API]
+    D --> D2[ExcelParser]
 ```
 
 🌐 API Integration
