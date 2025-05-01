@@ -1,0 +1,43 @@
+.list {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.listHeader {
+  background-color: var(--bg-paper);
+  position: sticky;
+  top: 0;
+}
+
+.listRow {
+  transition: background-color 0.2s ease;
+}
+
+.listRow:hover {
+  background-color: rgba(99, 102, 241, 0.05);
+}
+
+.listCell {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.income {
+  color: var(--secondary-main);
+  font-weight: 500;
+}
+
+.expense {
+  color: var(--error-main);
+  font-weight: 500;
+}
+
+.categoryTag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background-color: #e0e7ff;
+  color: var(--primary-dark);
+}

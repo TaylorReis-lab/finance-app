@@ -1,0 +1,46 @@
+.container {
+    padding: 24px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+  }
+  
+  .gridContainer {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+  
+  .chartCard {
+    grid-column: span 8;
+    padding: 20px;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .pieCard {
+    grid-column: span 4;
+    padding: 20px;
+    background-color: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .overviewCard {
+    grid-column: span 12;
+  }
+  
+  @media (max-width: 900px) {
+    .chartCard {
+      grid-column: span 12;
+    }
+    
+    .pieCard {
+      grid-column: span 12;
+    }
+  }
