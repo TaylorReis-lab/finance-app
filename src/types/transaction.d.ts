@@ -6,6 +6,7 @@ export interface Transaction {
   description: string;
   amount: number;
   category: string;
+  receiptUrl?: string 
 }
 
 interface Category {
