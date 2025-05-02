@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import {ImportForm} from '@/components/forms/ImportForm'
+import {ImportForm} from '../../components/forms/ImportForm'
 
 const Import = () => {
   return (

@@ -9,8 +9,8 @@ import {
   IconButton
 } from '@mui/material'
 import { Upload as UploadIcon, Close as CloseIcon } from '@mui/icons-material'
-import { useExcelParser } from '@/hooks/useExcelParser'
-import useTransactions from '@/hooks/useTransactions'
+import { useExcelParser } from '../../hooks/useExcelParser'
+import useTransactions from '../../hooks/useTransactions'
 
 export const ImportForm = () => {
   const { parseExcel, isParsing, parseError, resetError } = useExcelParser()

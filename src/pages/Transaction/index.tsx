@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Box, Typography } from '@mui/material'
-import { TransactionForm } from '@/components/forms/TransactionForm'
-import { TransactionList } from '@/components/forms/TransactionList'
+import { TransactionForm } from '../../components/forms/TransactionForm'
+import { TransactionList } from '../../components/forms/TransactionList'
 import { Transaction } from '@/types/transaction'
-import useTransactions from '@/hooks/useTransactions'
+import useTransactions from '../../hooks/useTransactions'
 
 const Transactions = () => {
   const [refreshKey, setRefreshKey] = useState(0)

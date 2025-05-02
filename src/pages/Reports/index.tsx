@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material'
-import { ReportFilters } from '@/components/forms/ReportFilters'
+import { ReportFilters } from '../../components/forms/ReportFilters'
 
 const Reports = () => {
   const handleFilter = (filters: {

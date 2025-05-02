@@ -19,9 +19,9 @@ import {
   Delete as DeleteIcon,
   Receipt as ReceiptIcon
 } from '@mui/icons-material'
-import { Transaction } from '@/types/transaction'
-import { formatCurrency, formatDate } from '@/utils/formatters'
-import useTransactions from '@/hooks/useTransactions'
+import { Transaction } from '../../types/transaction'
+import { formatCurrency, formatDate } from '../../utils/formatters'
+import useTransactions from '../../hooks/useTransactions'
 
 interface TransactionListProps {
   transactions: Transaction[]

@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import { Box, Typography, CircularProgress } from '@mui/material'
-import {FinancialOverviewCards} from '@/components/charts/FinancialOverviewCards'
-import MonthlySummaryChart from '@/components/charts/MonthlySummaryChart'
+import {FinancialOverviewCards} from '../../components/charts/FinancialOverviewCards'
+import MonthlySummaryChart from '../../components/charts/MonthlySummaryChart'
 
 const Dashboard = () => {
   return (
